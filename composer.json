@@ -1,0 +1,19 @@
+{
+    "name": "submtd/json-rpc",
+    "description": "Basic JSON RPC class",
+    "authors": [
+        {
+            "name": "Steve Harmeyer",
+            "email": "harmeyersteve@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Submtd\\JsonRpc\\": "src/"
+        }
+    }
+}
