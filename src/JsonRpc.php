@@ -188,16 +188,16 @@ class JsonRpc
                 ],
                 'json' => $data,
             ]);
+            $this->setStatus($response->getStatusCode(), $response->getReasonPhrase());
+            $this->setResponse(json_decode($response->getBody()->getContents()));
             if ($this->verifyId) {
                 if (!isset($this->getResponse()->id)) {
                     throw new \Exception('Response id not provided.', 401);
                 }
-                if ($this->getResponse() - id != $id) {
+                if ($this->getResponse()->id != $id) {
                     throw new \Exception('Reponse id does not match the id provided in the request.', 403);
                 }
             }
-            $this->setStatus($response->getStatusCode(), $response->getReasonPhrase());
-            $this->setResponse(json_decode($response->getBody()->getContents()));
             return $this->getResponse();
         } catch (\Exception $e) {
             $this->addError($e->getCode(), $e->getMessage());
