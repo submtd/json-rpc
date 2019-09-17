@@ -180,15 +180,16 @@ class JsonRpc
             'method' => $this->getMethod(),
             'params' => $this->getParameters(),
         ];
-        $client = new Client();
+        $client = new Client([
+            'connect_timeout' => 5,
+            'timeout' => 5,
+        ]);
         try {
             $response = $client->post($this->getHost(), [
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],
                 'json' => $data,
-                'connect_timeout' => 5,
-                'timeout' => 5,
             ]);
             $this->setStatus($response->getStatusCode(), $response->getReasonPhrase());
             $this->setResponse(json_decode($response->getBody()->getContents()));
