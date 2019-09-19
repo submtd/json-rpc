@@ -191,6 +191,9 @@ class JsonRpc
                     'Content-Type' => 'application/json',
                 ],
                 'json' => $data,
+                'connect_timeout' => 5,
+                'read_timeout' => 5,
+                'timeout' => 5,
             ]);
             $this->setStatus($response->getStatusCode(), $response->getReasonPhrase());
             $this->setResponse(json_decode($response->getBody()->getContents()));
