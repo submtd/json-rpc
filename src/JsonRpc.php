@@ -182,6 +182,7 @@ class JsonRpc
         ];
         $client = new Client([
             'connect_timeout' => 5,
+            'read_timeout' => 5,
             'timeout' => 5,
         ]);
         try {
